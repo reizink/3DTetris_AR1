@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/PlacementIndicator/DemoScene.unity
     guid: a776f0f2b23b7ec48a536a6129f0bdfa
+  - enabled: 1
+    path: Assets/Scenes/GestScene.unity
+    guid: 718d0f7fe2845411089a5b8286b3d21a
   - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: bdafe28a600e244b89d487953bbce979

@@ -19,12 +19,17 @@ public class TapToPlaceObject : MonoBehaviour
     private bool placementPoseIsValid;
     private bool IsPlaced = false;
 
+    //private Quaternion 
+
     // Use this for initialization
     void Start()
     {
         //arOrigin = FindObjectOfType<ARSessionOrigin>();
         raycastManager = FindObjectOfType<ARRaycastManager>();
         Debug.Log(raycastManager);
+
+
+        //ObjectToPlace.transform.localScale = new Vector3(ObjectToPlace.transform.localScale.x *.5f, ObjectToPlace.transform.localScale.y * .5f, ObjectToPlace.transform.localScale.z * .5f);
     }
 
     // Update is called once per frame
@@ -52,7 +57,7 @@ public class TapToPlaceObject : MonoBehaviour
         if (placementPoseIsValid && IsPlaced == false)
         {
             placementIndicator.SetActive(true);
-            placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation);
+            placementIndicator.transform.SetPositionAndRotation(placementPose.position, placementPose.rotation); //Quaternion.identity); //?
         }
         else
         {

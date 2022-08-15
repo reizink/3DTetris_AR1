@@ -7,7 +7,8 @@ public class ARMovement : MonoBehaviour
     // CurrentBlock
 
     public Blocks blocksScript;
-
+    public TouchMovement touchMovement;
+    public OrientControls OrientControls;
 
     public static int Xgrid = 10;
     public static int Ygrid = 10;
@@ -26,6 +27,188 @@ public class ARMovement : MonoBehaviour
         {
             currentBlock = GameObject.FindWithTag("CurrentBlock");
             blocksScript = currentBlock.GetComponent<Blocks>();
+            OrientControls = GameObject.FindWithTag("center").GetComponent<OrientControls>();
+
+            //
+            touchMovement = GameObject.FindGameObjectWithTag("TouchParent").GetComponent<TouchMovement>();
+            //Debug.Log("Touch Movement: " + touchMovement.name);
+            //touch move
+            if (OrientControls.mySide == 1) //player on left
+            {
+                if (TouchMovement.swipeUp)
+                {
+                    //MoveBack();
+                    MoveRight();
+                }
+                if (TouchMovement.swipeDown)
+                {
+                    //MoveForward();
+                    MoveLeft();
+                }
+                if (TouchMovement.swipeLeft)
+                {
+                    //MoveLeft();
+                    MoveForward();
+                }
+                if (TouchMovement.swipeRight)
+                {
+                    //MoveRight();
+                    MoveBack();
+                }
+
+                //touch rot
+                if (TouchMovement.RswipeUp)
+                {
+                    //RotBack();
+                    RotRight();
+                }
+                if (TouchMovement.RswipeDown)
+                {
+                    //RotForward();
+                    RotLeft();
+                }
+                if (TouchMovement.RswipeLeft)
+                {
+                    //RotLeft();
+                    RotBack();
+                }
+                if (TouchMovement.RswipeRight)
+                {
+                    //RotRight();
+                    RotForward();
+                }
+            }
+            else if (OrientControls.mySide == 2) //player at back/upper side
+            {
+                if (TouchMovement.swipeUp)
+                {
+                    //MoveBack();
+                    MoveForward();
+                }
+                if (TouchMovement.swipeDown)
+                {
+                    //MoveForward();
+                    MoveBack();
+                }
+                if (TouchMovement.swipeLeft)
+                {
+                    //MoveLeft();
+                    MoveRight();
+                }
+                if (TouchMovement.swipeRight)
+                {
+                    //MoveRight();
+                    MoveLeft();
+                }
+
+                //touch rot
+                if (TouchMovement.RswipeUp)
+                {
+                    //RotBack();
+                    RotForward();
+                }
+                if (TouchMovement.RswipeDown)
+                {
+                    //RotForward();
+                    RotBack();
+                }
+                if (TouchMovement.RswipeLeft)
+                {
+                    //RotLeft();
+                    RotRight();
+                }
+                if (TouchMovement.RswipeRight)
+                {
+                    //RotRight();
+                    RotLeft();
+                }
+            }
+            else if (OrientControls.mySide == 3) //on right
+            {
+                if (TouchMovement.swipeUp)
+                {
+                    //MoveBack();
+                    MoveLeft();
+                }
+                if (TouchMovement.swipeDown)
+                {
+                    //MoveForward();
+                    MoveRight();
+                }
+                if (TouchMovement.swipeLeft)
+                {
+                    //MoveLeft();
+                    MoveForward();
+                }
+                if (TouchMovement.swipeRight)
+                {
+                    //MoveRight();
+                    MoveForward();
+                }
+
+                //touch rot
+                if (TouchMovement.RswipeUp)
+                {
+                    //RotBack();
+                    RotLeft();
+                }
+                if (TouchMovement.RswipeDown)
+                {
+                    //RotForward();
+                    RotRight();
+                }
+                if (TouchMovement.RswipeLeft)
+                {
+                    //RotLeft();
+                    RotForward();
+                }
+                if (TouchMovement.RswipeRight)
+                {
+                    //RotRight();
+                    RotBack();
+                }
+            }
+            else //0
+            {
+                if (TouchMovement.swipeUp)
+                {
+                    MoveBack();
+                    Debug.Log("swiped Up");
+                }
+                if (TouchMovement.swipeDown)
+                {
+                    MoveForward();
+                    Debug.Log("swiped Down");
+                }
+                if (TouchMovement.swipeLeft)
+                {
+                    MoveLeft();
+                    Debug.Log("swiped Left");
+                }
+                if (TouchMovement.swipeRight)
+                {
+                    MoveRight();
+                    Debug.Log("swiped Right");
+                }
+
+                //touch rot
+                if (TouchMovement.RswipeUp)
+                {
+                    RotBack();
+                }
+                if (TouchMovement.RswipeDown)
+                {
+                    RotForward();
+                }
+                if (TouchMovement.RswipeLeft)
+                {
+                    RotLeft();
+                }
+                if (TouchMovement.RswipeRight)
+                {
+                    RotRight();
+                }
+            }
         }
     }
 

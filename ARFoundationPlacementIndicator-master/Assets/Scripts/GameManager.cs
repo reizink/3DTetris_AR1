@@ -13,15 +13,15 @@ public class GameManager : MonoBehaviour
 	}
 
 	// play game again
-	public void playAgain()
+	public void playAgain() //gest
 	{
-		SceneManager.LoadScene("DemoScene"); //GameScene, SampleScene
+		SceneManager.LoadScene("GestScene"); //GameScene, SampleScene
 	}
 
 	// start playing
-	public void startPlay()
+	public void startPlay() //gest
 	{
-		SceneManager.LoadScene("DemoScene"); //GameScene
+		SceneManager.LoadScene("GestScene"); //GameScene
     }
 
 	// back to start
@@ -29,4 +29,19 @@ public class GameManager : MonoBehaviour
 	{
 		SceneManager.LoadScene("PlayScene");
 	}
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+
+    public void play2D()
+    {
+        SceneManager.LoadScene("DemoScene");
+    }
+
+    public void playagain2()
+    {
+        SceneManager.LoadScene("DemoScene");
+    }
 }

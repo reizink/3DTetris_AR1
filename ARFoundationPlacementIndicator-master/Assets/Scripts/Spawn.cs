@@ -30,8 +30,10 @@ public class Spawn : MonoBehaviour
         //CurPos = new Vector3 (CurPos.x + 0.25f, CurPos.y + 1, CurPos.z + 0.25f);
         shadowPos = CurPos;
 
+        //PlayerPrefs.SetString("GameBoard", CurPos.ToString());
+
         GridScale = gameObject.transform.parent.transform.localScale;
-        GridRot = new Vector3(gameObject.transform.parent.localRotation.x, gameObject.transform.parent.localRotation.y, gameObject.transform.parent.localRotation.z);
+        //GridRot = new Vector3(gameObject.transform.parent.localRotation.x, gameObject.transform.parent.localRotation.y, gameObject.transform.parent.localRotation.z);
 
         Debug.Log("Current Spawn Pos: " + CurPos);
         Debug.Log("Current Grid Scale: " + GridScale);
@@ -59,13 +61,13 @@ public class Spawn : MonoBehaviour
         Debug.Log("Spawned Block: " + block.name);
 
         //set parent
-        block.transform.parent = GameObject.FindGameObjectWithTag("GameParent").transform;
-        Debug.Log("Set Parent: " + GameObject.FindGameObjectWithTag("GameParent").name);
+        //block.transform.parent = GameObject.FindGameObjectWithTag("GameParent").transform;
+        //Debug.Log("Set Parent: " + GameObject.FindGameObjectWithTag("GameParent").name);
 
         // generate shadow
         GameObject shadowBlock = Instantiate(shadows[randomBlock], shadowPos, Quaternion.identity) as GameObject;
         shadowBlock.transform.localScale = GridScale;
-        shadowBlock.transform.parent = GameObject.FindGameObjectWithTag("GameParent").transform;
+        //shadowBlock.transform.parent = GameObject.FindGameObjectWithTag("GameParent").transform;
     }
 
     public void setPlay()

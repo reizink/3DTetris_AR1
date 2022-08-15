@@ -31,7 +31,7 @@ public class Timer : MonoBehaviour
                 secCount = 0;
             }
 
-            tellTime.text = minCount + ":" + secCount;
+            tellTime.text = minCount + ":" + (int)secCount;
             //Debug.Log("Timer: " + minCount + ":" + (int)secCount);
 
 
@@ -44,4 +44,5 @@ public class Timer : MonoBehaviour
     {
         startTimer = true;
     }
+
 }

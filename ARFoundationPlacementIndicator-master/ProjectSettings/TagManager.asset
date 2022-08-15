@@ -9,6 +9,10 @@ TagManager:
   - CurrentBlock
   - Timer
   - GameParent
+  - MovePanel
+  - TouchParent
+  - Track
+  - center
   layers:
   - Default
   - TransparentFX

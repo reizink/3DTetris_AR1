@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using UnityEngine.UI;
+
 public class Blocks : MonoBehaviour
 {
     //
@@ -30,14 +32,14 @@ public class Blocks : MonoBehaviour
     public bool RotX, RotY, RotZ, TestGrid;
 
     public Timer Timer;
-    public string score = "00:00";
+    public string score;
 
     // Start is called before the first frame update
     void Start()
     {
         Timer = GameObject.FindGameObjectWithTag("Timer").GetComponent<Timer>();
         Debug.Log("Timer: " + Timer.name);
-        PlayerPrefs.SetString("currentScore", "0");
+        
         //test convertPos
         //Debug.Log("convertPos: " + convertPos(0.325f));
         //Debug.Log("convertPos: " + convertPos(2.625f));
@@ -47,6 +49,8 @@ public class Blocks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.SetString("currentScore", Timer.GetComponent<Text>().text);
+
         // check movement of shadow
         if (validMoveShadow())
         {
@@ -247,7 +251,8 @@ public class Blocks : MonoBehaviour
         // check for game over
         if (gameOver)
         { // load the game over scene
-            score = Timer.tellTime.ToString();
+            score = Timer.tellTime.text;
+            Debug.Log("Score: " + score);
             PlayerPrefs.SetString("currentScore", score); //
 
             SceneManager.LoadScene("GameOver");
@@ -326,6 +331,10 @@ public class Blocks : MonoBehaviour
             if (fillGrid[convertPos(Xpos), 10, convertPos(Zpos)] != null) //10
             {
                 Debug.Log("Pos X: " + Xpos + "\nPos Y: " + Ypos + "\nPos Z: " + Zpos);
+
+                score = Timer.tellTime.text;
+                PlayerPrefs.SetString("currentScore", score);
+                Debug.Log("Score: " + score);
                 gameOver = true;
                 Debug.Log("game over");
             }
