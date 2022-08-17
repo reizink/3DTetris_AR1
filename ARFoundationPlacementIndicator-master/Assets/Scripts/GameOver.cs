@@ -28,12 +28,6 @@ public class GameOver : MonoBehaviour
         //
         posOutput.text = "X: \n" + PlayerPrefs.GetString("Xpositions", "null") + "\nZ: \n" + PlayerPrefs.GetString("Zpositions", "null");
         //posOutput.text.Replace("\n", " ");
-
-        //posOutput.text = positionsList.text;
-        //posOutput.text = "XXXAXXX";
-        //Debug.Log("GameOver Script positions: " + posOutput.text);
-        //Debug.Log("X Test: " + PlayerPrefs.GetString("Xpositions"));
-        //printPositions();
     }
 
     public void printPositions()

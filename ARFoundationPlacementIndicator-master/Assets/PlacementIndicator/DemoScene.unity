@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2dd3f90ee234ccc9b1cea34f849067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ObjectToPlace: {fileID: 8013347760822321294, guid: 5ac4bb5443ef745ca9286c2665fa243a,
+  ObjectToPlace: {fileID: 7880869312075696049, guid: 5ac4bb5443ef745ca9286c2665fa243a,
     type: 3}
   placementIndicator: {fileID: 98676854}
 --- !u!1 &883989184
@@ -831,7 +831,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1446653256}
-  GamePoint: {fileID: 8013347760822321294, guid: 5ac4bb5443ef745ca9286c2665fa243a,
+  GamePoint: {fileID: 7880869312075696049, guid: 5ac4bb5443ef745ca9286c2665fa243a,
     type: 3}
   Xpositions: []
   Zpositions: []
+  curSide: 5

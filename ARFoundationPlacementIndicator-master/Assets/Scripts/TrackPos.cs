@@ -11,6 +11,10 @@ public class TrackPos : MonoBehaviour
     public List<float> Xpositions;
     public List<float> Zpositions;
 
+    public int curSide = 5;
+    private GameObject movePanel;
+    private GameObject RotPanel;
+
     private Vector3 startPos;
     private Vector3 curPos, pastPos;
     private float totalDist;
@@ -18,7 +22,7 @@ public class TrackPos : MonoBehaviour
     private float secs;
     private int mins, storePrev;
     private string xPosRec, zPosRec;
-    //private bool testOnce;
+    private float angle;
 
     void Start()
     {
@@ -28,6 +32,9 @@ public class TrackPos : MonoBehaviour
 
         secs = mins = 0;
         storePrev = 1;
+
+        movePanel = GameObject.FindWithTag("MovePanel");
+        RotPanel = GameObject.FindWithTag("RotPanel");
     }
 
     void Update()
@@ -48,9 +55,37 @@ public class TrackPos : MonoBehaviour
 
         positionLists();
 
-        int tmp = 5; //error number
-        tmp = getOrientation();
-        Debug.Log("Orientation side: " + tmp);
+        //int tmp = 5; //error number
+        curSide = getOrientation();
+        Debug.Log("Orientation side: " + curSide);
+
+        //rotate panel??
+        angle = Vector2.SignedAngle(new Vector2(GamePoint.transform.position.x, GamePoint.transform.position.z), new Vector2(player.transform.position.x, player.transform.position.z));
+        Vector3 eulerRotation = transform.rotation.eulerAngles;
+        //movePanel.transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, angle);
+        //RotPanel.transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, angle);
+
+        Debug.Log("Panel Angle: " + angle);
+        /*
+        if (curSide == 0)
+        {
+            //rotate Move panel
+            movePanel.transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, 180);
+        }
+        else if(curSide == 1)
+        {
+            //rotate Move panel
+            movePanel.transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, 90);
+        }
+        else if (curSide == 3)
+        {
+            //rotate Move panel
+            movePanel.transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, -90);
+        }
+        else //test is side 2, upper side, no
+        {
+            movePanel.transform.rotation = Quaternion.Euler(eulerRotation.x, eulerRotation.y, 0);
+        }*/
 
     }
 

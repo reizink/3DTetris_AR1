@@ -8,7 +8,12 @@ public class ARMovement : MonoBehaviour
 
     public Blocks blocksScript;
     public TouchMovement touchMovement;
-    public OrientControls OrientControls;
+    //public OrientControls OrientControls;
+    //public TrackPos TrackPos;
+    public GameObject cam;
+    private Vector2 camPos;
+    private int side = 5;
+
 
     public static int Xgrid = 10;
     public static int Ygrid = 10;
@@ -23,17 +28,21 @@ public class ARMovement : MonoBehaviour
 
     private void Update()
     {
+        //TrackPos = GameObject.FindWithTag("Track").GetComponent<TrackPos>();
+
         if (isPlaying)
         {
             currentBlock = GameObject.FindWithTag("CurrentBlock");
             blocksScript = currentBlock.GetComponent<Blocks>();
-            OrientControls = GameObject.FindWithTag("center").GetComponent<OrientControls>();
+            //OrientControls = GameObject.FindWithTag("center").GetComponent<OrientControls>();
+            cam = GameObject.FindWithTag("MainCamera");
+            side = findSide();
 
             //
             touchMovement = GameObject.FindGameObjectWithTag("TouchParent").GetComponent<TouchMovement>();
             //Debug.Log("Touch Movement: " + touchMovement.name);
             //touch move
-            if (OrientControls.mySide == 1) //player on left
+            if (side == 1) //player on left //TrackPos.curSide == 1
             {
                 if (TouchMovement.swipeUp)
                 {
@@ -48,12 +57,14 @@ public class ARMovement : MonoBehaviour
                 if (TouchMovement.swipeLeft)
                 {
                     //MoveLeft();
-                    MoveForward();
+                    //MoveForward();
+                    MoveBack();
                 }
                 if (TouchMovement.swipeRight)
                 {
                     //MoveRight();
-                    MoveBack();
+                    //MoveBack();
+                    MoveForward();
                 }
 
                 //touch rot
@@ -78,7 +89,7 @@ public class ARMovement : MonoBehaviour
                     RotForward();
                 }
             }
-            else if (OrientControls.mySide == 2) //player at back/upper side
+            else if (side == 2) //player at back/upper side //2
             {
                 if (TouchMovement.swipeUp)
                 {
@@ -123,7 +134,7 @@ public class ARMovement : MonoBehaviour
                     RotLeft();
                 }
             }
-            else if (OrientControls.mySide == 3) //on right
+            else if (side == 3) //on right // OrientControls.mySide //3
             {
                 if (TouchMovement.swipeUp)
                 {
@@ -138,12 +149,14 @@ public class ARMovement : MonoBehaviour
                 if (TouchMovement.swipeLeft)
                 {
                     //MoveLeft();
+                    //MoveBack();
                     MoveForward();
                 }
                 if (TouchMovement.swipeRight)
                 {
                     //MoveRight();
-                    MoveForward();
+                    //MoveForward();
+                    MoveBack();
                 }
 
                 //touch rot
@@ -209,6 +222,8 @@ public class ARMovement : MonoBehaviour
                     RotRight();
                 }
             }
+            //Debug.Log("orient side: " + OrientControls.mySide);
+            //Debug.Log("Track side: " + TrackPos.curSide);
         }
     }
 
@@ -277,6 +292,39 @@ public class ARMovement : MonoBehaviour
 
         }
         return true;
+    }
+
+    public int findSide()
+    {
+        float angle;
+        int tmp = 5;
+
+        camPos = new Vector2(cam.transform.position.x, cam.transform.position.z);
+
+        angle = Vector2.SignedAngle(new Vector2(1.5f, 1.5f), camPos);
+
+        if (angle > 54 && angle < 180) //54 to 180
+        {
+            Debug.Log("player at Base");
+            tmp = 0;
+        }
+        else if (angle > 0 && angle <= 54) //0 to 54
+        {
+            Debug.Log("player on Left");
+            tmp = 1;
+        }
+        else if (angle > -54 && angle <= 0) //-54 to 0
+        {
+            Debug.Log("player on Upper side");
+            tmp = 2;
+        }
+        else // -54 to -180
+        {
+            Debug.Log("Player on Right");
+            tmp = 3;
+        }
+
+        return tmp;
     }
 
     // Button calls for Blocks script

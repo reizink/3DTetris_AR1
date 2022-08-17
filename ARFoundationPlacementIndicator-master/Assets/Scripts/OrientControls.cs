@@ -31,13 +31,13 @@ public class OrientControls : MonoBehaviour
         angleUR = Vector2.SignedAngle(centerAngle, new Vector2(URcorner.transform.position.x, URcorner.transform.position.z)); //-54
         Debug.Log("Starting angles: " + angleBL + "\n" + angleBR + "\n" + angleUL + "\n" + angleUR);
 
-        if (GameObject.FindWithTag("Track").GetComponent<TrackPos>() != null && TrackPos.player != null)
+        /*if (GameObject.FindWithTag("Track").GetComponent<TrackPos>() != null && TrackPos.player != null)
         {
             TrackPos = GameObject.FindWithTag("Track").GetComponent<TrackPos>();
             myPlayer = TrackPos.player;
             Debug.Log("Found Tracking***");
         }
-        else
+        else*/
             myPlayer = GameObject.FindWithTag("center");
         
     }
